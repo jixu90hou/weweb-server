@@ -9,5 +9,7 @@ public class BaseService<T extends BaseEntity, dao extends BaseDao<T>> {
 	public void delete(T entity){
 		dao.delete(entity);
 	}
-
+	public void add(T entity){
+		dao.add(entity);
+	}
 }
