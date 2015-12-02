@@ -2,7 +2,9 @@ package org.shen.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.shen.entity.BaseEntity;
 
 import tk.mybatis.mapper.common.Mapper;
@@ -23,4 +25,5 @@ public abstract class BaseDao<T extends BaseEntity> implements Mapper<T>{
 		// 得到传递的类类型（这里只有一个泛型）
 		clazz = (Class<T>) types[0];
 	}
+
 }
