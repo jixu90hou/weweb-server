@@ -17,7 +17,7 @@ public class LoginController {
 	private LoginService loginService;
 	 @RequestMapping("/login")  
 	public @ResponseBody String login(HttpServletRequest request){
-		String name=request.getParameter("name");
+		String name=request.getParameter("name");//添加注释
 		String password=request.getParameter("password");
 		return JSON.toJSONString(loginService.login(name, password));
 	 }
