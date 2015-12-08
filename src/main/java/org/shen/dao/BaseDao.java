@@ -1,15 +1,15 @@
+
 package org.shen.dao;
 
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.List;
 
-import org.apache.ibatis.session.RowBounds;
-import org.shen.entity.BaseEntity;
+import java.lang.reflect.Type;
+
+import org.springframework.stereotype.Repository;
 
 import tk.mybatis.mapper.common.Mapper;
-
-public abstract class BaseDao<T extends BaseEntity> implements Mapper<T>{
+@Repository
+public abstract class BaseDao<T>{
 	/**
 	 * 定义一个类反射对象，可以通过这个对象反射调用成员和方法，构造函数
 	 */

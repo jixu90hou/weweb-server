@@ -1,7 +1,9 @@
 package org.shen.mapper;
 
-import org.shen.model.User;
-import tk.mybatis.mapper.common.Mapper;
+import java.util.Map;
 
-public interface UserMapper extends Mapper<User> {
+import org.shen.model.User;
+import org.shen.util.MyMapper;
+public interface UserMapper extends MyMapper<User> {
+	public User queryById(Map<String,Object> map);
 }

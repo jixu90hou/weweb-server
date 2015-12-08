@@ -1,5 +1,6 @@
 package org.shen.model;
 
+import java.util.Date;
 import javax.persistence.*;
 
 public class User {
@@ -39,6 +40,9 @@ public class User {
      * 头像
      */
     private String picture;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     /**
      * 获取用户ID
@@ -164,5 +168,19 @@ public class User {
      */
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    /**
+     * @return update_time
+     */
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * @param updateTime
+     */
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

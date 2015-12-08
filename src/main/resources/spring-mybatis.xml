@@ -10,7 +10,7 @@
                         http://www.springframework.org/schema/mvc    
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
     <!-- 自动扫描 -->  
-    <context:component-scan base-package="org.shen" />  
+    <context:component-scan base-package="org.shen.service" />  
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
@@ -35,23 +35,72 @@
         <property name="maxWait" value="${maxWait}"></property>  
     </bean>  
   
-    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
-        <property name="dataSource" ref="dataSource" />  
-        <!-- 自动扫描mapping.xml文件 -->  
-        <property name="mapperLocations" value="classpath:org/shen/mapping/*.xml"></property>  
-    </bean>  
-  
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
-        <property name="basePackage" value="org.shen.dao" />  
+<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="org.shen.mapper" />  
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
-    </bean>  
+    </bean>   -->
   
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
     <bean id="transactionManager"  
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
         <property name="dataSource" ref="dataSource" />  
     </bean>  
-  
+  	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.shen.mapper" />
+		<property name="annotationClass" value="org.shen.util.MyBatisRepository" />
+	</bean>
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.shen.mapper"/>
+         <property name="markerInterface" value="org.shen.util.MyMapper"/>
+        <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
+    <!--     <property name="markerInterface" value="org.shen.mapper.MyMapper"/> -->
+        <!-- 通用Mapper通过属性注入进行配置，默认不配置时会注册Mapper<T>接口
+        <property name="properties">
+            <value>
+                mappers=tk.mybatis.mapper.common.Mapper
+            </value>
+        </property>
+        -->
+    </bean>
+    
+    <bean id="mapper" class="org.dozer.spring.DozerBeanMapperFactoryBean" lazy-init="false">
+       <property name="mappingFiles">
+			<list>
+			    <value>classpath*:dozerBeanMapping.xml</value>
+           </list>
+       </property>
+    </bean>
+    <bean class="org.shen.util.DozerBeanUtil">
+    	<property name="mapper" ref="mapper"/>
+    </bean>	
+    
+    
+    
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <!-- 自动扫描mapping.xml文件 -->  
+        <property name="mapperLocations" value="classpath:org/shen/mapper/*.xml"></property>  
+        <property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+						dialect=mysql
+	              		reasonable=false
+					</value>
+					</property>
+				</bean>
+				<bean class="tk.mybatis.mapper.mapperhelper.MapperInterceptor">
+					<property name="properties">
+						<value>
+							mappers=tk.mybatis.mapper.common.Mapper
+							IDENTITY=MYSQL
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+    </bean>  
 </beans>  
