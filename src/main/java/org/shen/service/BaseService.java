@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import tk.mybatis.mapper.common.Mapper;
+
+import com.github.pagehelper.Page;
 //http://www.tuicool.com/articles/bIRfUv(学习参考)
 public abstract class BaseService<T,Dao extends Mapper<T>> {
 	@Autowired
@@ -55,5 +57,12 @@ public abstract class BaseService<T,Dao extends Mapper<T>> {
 	 */
 	public List<T> selectAll(){
 		return dao.selectAll();
+	}
+	/**
+	 * 查询分页
+	 * @return
+	 */
+	public Page<T> selectPage(){
+		return (Page<T>)selectAll();
 	}
 }
