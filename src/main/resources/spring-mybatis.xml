@@ -11,6 +11,11 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
     <!-- 自动扫描 -->  
     <context:component-scan base-package="org.shen.service" />  
+<!--     <context:property-placeholder location="classpath:log4j.properties"/>
+ -->    
+ 
+ 
+ 
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
@@ -67,13 +72,38 @@
     <bean class="org.shen.util.DozerBeanUtil">
     	<property name="mapper" ref="mapper"/>
     </bean>	
+<!--       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mapper/*.xml</value>
+            </array>
+        </property>
+        <property name="typeAliasesPackage" value="com.isea533.mybatis.model"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            returnPageInfo=check
+                            params=count=countSql
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean> -->
     
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />  
         <!-- 自动扫描mapping.xml文件 -->  
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>  
-        <!-- <property name="plugins">
+        <property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageHelper">
 					<property name="properties">
@@ -83,15 +113,8 @@
 					</value>
 					</property>
 				</bean>
-				<bean class="tk.mybatis.mapper.mapperhelper.MapperInterceptor">
-					<property name="properties">
-						<value>
-							mappers=tk.mybatis.mapper.common.Mapper
-							IDENTITY=MYSQL
-						</value>
-					</property>
-				</bean>
 			</array>
-		</property> -->
+		</property>
     </bean>  
+    
 </beans>  

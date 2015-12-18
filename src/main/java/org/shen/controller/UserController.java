@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.shen.model.User;
 import org.shen.result.Result;
 import org.shen.result.ResultFactory;
@@ -25,6 +26,7 @@ import com.github.pagehelper.PageHelper;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	private static Logger logger=Logger.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
 
@@ -77,15 +79,13 @@ public class UserController {
 		String start=request.getParameter("start");
 		String fetch=request.getParameter("fetch");
 		PageHelper.startPage(Integer.valueOf(start), Integer.valueOf(fetch));
-		/*Page<User> usersPage = userService.selectPage();
+		Page<User> usersPage = userService.selectPage();
 		List<User> users=usersPage.getResult();
-		Long count=usersPage.getTotal();*/
-		List<User> users=userService.selectAll();
+		Long count=usersPage.getTotal();
 		List<UserVo> userVos = DozerBeanUtil.mapList(users, UserVo.class);
-		/*Result result = ResultFactory.generateResult(ConstantUtil.SUCCESS_CODE,
-				String.valueOf(count), userVos);*/
 		Result result = ResultFactory.generateResult(ConstantUtil.SUCCESS_CODE,
-				ConstantUtil.SUCCESS_MSG, userVos);
+				String.valueOf(count), userVos);
+		logger.debug(JSON.toJSONString(result));
 		return JSON.toJSONString(result);
 	}
 
