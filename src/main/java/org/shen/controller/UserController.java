@@ -91,7 +91,7 @@ public class UserController {
 
 	@RequestMapping("/queryById")
 	public @ResponseBody String queryById(HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("id", 2);
 		User user = userService.queryById(map);
 		UserVo userVo = DozerBeanUtil.map(user, UserVo.class);
