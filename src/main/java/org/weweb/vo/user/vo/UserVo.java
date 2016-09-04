@@ -1,6 +1,7 @@
-package org.shen.vo;
+package org.weweb.vo.user.vo;
 
 public class UserVo {
+	private Long id;
 	private String username;
 	private String account;
 	private String password;
@@ -50,5 +51,12 @@ public class UserVo {
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

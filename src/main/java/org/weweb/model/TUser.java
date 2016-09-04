@@ -1,9 +1,11 @@
-package org.shen.model;
+package org.weweb.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-public class User {
+@Table(name = "t_user")
+public class TUser implements Serializable{
     /**
      * 用户ID
      */
@@ -17,7 +19,7 @@ public class User {
     private String username;
 
     /**
-     * 账号
+     * 帐号
      */
     private String account;
 
@@ -41,6 +43,9 @@ public class User {
      */
     private String picture;
 
+    /**
+     * 更新时间
+     */
     @Column(name = "update_time")
     private Date updateTime;
 
@@ -81,18 +86,18 @@ public class User {
     }
 
     /**
-     * 获取账号
+     * 获取帐号
      *
-     * @return account - 账号
+     * @return account - 帐号
      */
     public String getAccount() {
         return account;
     }
 
     /**
-     * 设置账号
+     * 设置帐号
      *
-     * @param account 账号
+     * @param account 帐号
      */
     public void setAccount(String account) {
         this.account = account;
@@ -171,14 +176,18 @@ public class User {
     }
 
     /**
-     * @return update_time
+     * 获取更新时间
+     *
+     * @return update_time - 更新时间
      */
     public Date getUpdateTime() {
         return updateTime;
     }
 
     /**
-     * @param updateTime
+     * 设置更新时间
+     *
+     * @param updateTime 更新时间
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;

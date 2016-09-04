@@ -1,4 +1,4 @@
-package org.shen.util;
+package org.weweb.util;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

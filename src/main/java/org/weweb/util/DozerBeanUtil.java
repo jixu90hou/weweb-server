@@ -1,10 +1,10 @@
-package org.shen.util;
-
-import java.util.ArrayList;
-import java.util.List;
+package org.weweb.util;
 
 import org.dozer.Mapper;
 import org.dozer.MappingException;
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 通过依赖注入Dozer工具
  * @author shen

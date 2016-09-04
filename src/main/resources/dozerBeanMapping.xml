@@ -9,7 +9,7 @@
         <wildcard>true</wildcard>  
       </configuration>  
     <!--   <mapping date-format="yyyy-MM-dd">  
-        <class-a>org.shen.model.User</class-a>  
-        <class-b>org.shen.vo.UserVo</class-b>  
+        <class-a>User</class-a>
+        <class-b>UserVo</class-b>
         </mapping> -->
 </mappings>  

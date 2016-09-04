@@ -1,4 +1,4 @@
-package org.shen.result;
+package org.weweb.result;
 /**
  * 返回到对象结果集
  * @author Jack Shen

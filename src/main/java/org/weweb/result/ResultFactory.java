@@ -1,4 +1,4 @@
-package org.shen.result;
+package org.weweb.result;
 
 import java.util.List;
 /**
