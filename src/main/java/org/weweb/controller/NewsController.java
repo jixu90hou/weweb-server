@@ -32,12 +32,9 @@ public class NewsController {
     @ResponseBody
     Result addNews(HttpServletRequest request, NewsVo vo) {
         try {
-            logger.debug("addNews===============");
             TNews news = new TNews();
             news.setTitle(vo.getTitle());
             news.setContent(vo.getContent());
-            logger.error("news->" + news);
-            logger.error("vo--->" + vo);
             news.setCreateTime(new Date());
             newsService.add(news, true);
         } catch (Exception e) {
@@ -53,7 +50,6 @@ public class NewsController {
     @ResponseBody
     Result updateNews(HttpServletRequest request, NewsVo vo) {
         try {
-            logger.debug("updateNews===============");
             TNews news = new TNews();
             news.setId(vo.getId());
             news.setTitle(vo.getTitle());
