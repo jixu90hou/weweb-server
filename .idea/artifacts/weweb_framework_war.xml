@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="weweb-framework:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="weweb-framework-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="weweb-framework:war exploded" />
+    </root>
+  </artifact>
+</component>

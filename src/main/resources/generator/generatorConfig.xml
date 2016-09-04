@@ -50,15 +50,28 @@
     <sqlMapGenerator targetPackage="${targetXMLPackage}"  targetProject="${targetResourcesProject}"/>
 
     <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
-
+<!--
     <table tableName="%" >
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>-->
+    <table tableName="t_news" domainObjectName="TNews" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+
     </table>
-    
-    <table tableName="user" domainObjectName="User" >  
+    <table tableName="t_user" domainObjectName="TUser" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+
+    </table>
+    <!--
+     <table tableName="t_log" domainObjectName="Logger" >
     	 <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-    	 
- 	 </table>  
-    
+
+ 	 </table>
+
+    <table tableName="user" domainObjectName="User" >
+    	 <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+
+ 	 </table>
+    -->
   </context>
 </generatorConfiguration>

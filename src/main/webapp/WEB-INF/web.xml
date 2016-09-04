@@ -7,7 +7,7 @@
     <!-- Spring和mybatis的配置文件 -->  
     <context-param>  
         <param-name>contextConfigLocation</param-name>  
-        <param-value>classpath:spring-mybatis.xml</param-value>  
+        <param-value>classpath:spring-mybatis.xml</param-value>
     </context-param>  
     
     
@@ -40,7 +40,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
         <init-param>  
             <param-name>contextConfigLocation</param-name>  
-            <param-value>classpath:spring-mvc.xml</param-value>  
+            <param-value>classpath:spring-mvc.xml</param-value>
         </init-param>  
         <load-on-startup>1</load-on-startup>  
         <async-supported>true</async-supported>  
@@ -51,9 +51,9 @@
         <url-pattern>/</url-pattern>  
     </servlet-mapping>  
     
-	 <context-param>  
+	 <context-param>
 	     <param-name>log4jConfigLocation</param-name>  
-	     <param-value>WEB-INF/log4j.properties</param-value>  
+	     <param-value>WEB-INF/log4j.properties</param-value>
 	    </context-param>  
 	      
 	    <context-param>  
@@ -63,10 +63,10 @@
 	      
 	    <listener>  
 	     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>  
-	    </listener>  
+	    </listener>
 	    
     <welcome-file-list>  
-        <welcome-file>/index.jsp</welcome-file>  
-    </welcome-file-list>  
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
   
 </web-app>  

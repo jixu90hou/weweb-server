@@ -1,58 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-<beans xmlns="http://www.springframework.org/schema/beans"  
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
-    xmlns:context="http://www.springframework.org/schema/context"  
-    xmlns:mvc="http://www.springframework.org/schema/mvc"  
-    xsi:schemaLocation="http://www.springframework.org/schema/beans    
-                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd    
-                        http://www.springframework.org/schema/context    
-                        http://www.springframework.org/schema/context/spring-context-3.1.xsd    
-                        http://www.springframework.org/schema/mvc    
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
-    <!-- 自动扫描 -->  
-    <context:component-scan base-package="org.shen.service" />  
-<!--     <context:property-placeholder location="classpath:log4j.properties"/>
- -->    
- 
- 
- 
-    <!-- 引入配置文件 -->  
-    <bean id="propertyConfigurer"  
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-        <property name="location" value="classpath:jdbc.properties" />  
-    </bean>  
-  
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
-        destroy-method="close">  
-        <property name="driverClassName" value="${driver}" />  
-        <property name="url" value="${url}" />  
-        <property name="username" value="${username}" />  
-        <property name="password" value="${password}" />  
-        <!-- 初始化连接大小 -->  
-        <property name="initialSize" value="${initialSize}"></property>  
-        <!-- 连接池最大数量 -->  
-        <property name="maxActive" value="${maxActive}"></property>  
-        <!-- 连接池最大空闲 -->  
-        <property name="maxIdle" value="${maxIdle}"></property>  
-        <!-- 连接池最小空闲 -->  
-        <property name="minIdle" value="${minIdle}"></property>  
-        <!-- 获取连接最大等待时间 -->  
-        <property name="maxWait" value="${maxWait}"></property>  
-    </bean>  
-    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
-    <bean id="transactionManager"  
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
-        <property name="dataSource" ref="dataSource" />  
-    </bean>  
-<!--  	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="org.shen.mapper" />
-		<property name="annotationClass" value="org.shen.util.MyBatisRepository" />
-	</bean>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="org.weweb.service"/>
+    <!--spring aop拦截日志-->
+    <context:component-scan base-package="org.weweb.interceptor"/>
+    <!--redis-->
+    <context:component-scan base-package="org.weweb.cache.redis"/>
+
+    <!--
+        <context:component-scan base-package="org.weweb.util" />
+    -->
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <!--
+         <context:property-placeholder location="classpath:log4j.properties"/>
+    -->
+
+
+
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${initialSize}"></property>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${maxActive}"></property>
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdle" value="${maxIdle}"></property>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"></property>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${maxWait}"></property>
+    </bean>
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--  	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="org.shen.mapper" />
+            <property name="annotationClass" value="org.shen.util.MyBatisRepository" />
+        </bean>-->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.shen.mapper"/>
-         <property name="markerInterface" value="org.shen.util.MyMapper"/>
+        <property name="basePackage" value="org.weweb.mapper"/>
+        <!-- <property name="markerInterface" value="MyMapper"/>-->
         <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
-    <!--     <property name="markerInterface" value="org.shen.mapper.MyMapper"/> -->
+        <!--     <property name="markerInterface" value="org.shen.mapper.MyMapper"/> -->
         <!-- 通用Mapper通过属性注入进行配置，默认不配置时会注册Mapper<T>接口
         <property name="properties">
             <value>
@@ -61,60 +72,89 @@
         </property>
         -->
     </bean>
-    
+
     <bean id="mapper" class="org.dozer.spring.DozerBeanMapperFactoryBean" lazy-init="false">
-       <property name="mappingFiles">
-			<list>
-			    <value>classpath*:dozerBeanMapping.xml</value>
-           </list>
-       </property>
-    </bean>
-    <bean class="org.shen.util.DozerBeanUtil">
-    	<property name="mapper" ref="mapper"/>
-    </bean>	
-<!--       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations">
-            <array>
-                <value>classpath:mapper/*.xml</value>
-            </array>
+        <property name="mappingFiles">
+            <list>
+                <value>classpath*:dozerBeanMapping.xml</value>
+            </list>
         </property>
-        <property name="typeAliasesPackage" value="com.isea533.mybatis.model"/>
+    </bean>
+    <bean class="org.weweb.util.DozerBeanUtil">
+        <property name="mapper" ref="mapper"/>
+    </bean>
+    <!-- Spring处理异常的操作 -->
+    <bean id="exceptionResolver" class="org.weweb.common.HandlerExceptionResolverImpl">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">/error</prop>
+                <prop key="java.lang.Throwable">/error</prop>
+            </props>
+        </property>
+        <property name="statusCodes">
+            <props>
+                <prop key="manager/error">500</prop>
+                <prop key="manager/error">404</prop>
+            </props>
+        </property>
+        <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+        <property name="warnLogCategory" value="WARN"></property>
+        <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
+        <property name="defaultErrorView" value="manager/error"></property>
+        <!-- 默认HTTP状态码 -->
+        <property name="defaultStatusCode" value="500"></property>
+    </bean>
+    <!-- <bean id="logInterceptor" class="LogInterceptor"/>
+     <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+         <property name="interceptors">
+             <list>
+                 <ref bean="logInterceptor"/>
+             </list>
+         </property>
+     </bean>-->
+    <!--       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="mapperLocations">
+                <array>
+                    <value>classpath:mapper/*.xml</value>
+                </array>
+            </property>
+            <property name="typeAliasesPackage" value="com.isea533.mybatis.model"/>
+            <property name="plugins">
+                <array>
+                    <bean class="com.github.pagehelper.PageHelper">
+                        这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置
+                        <property name="properties">
+                            <value>
+                                dialect=mysql
+                                reasonable=true
+                                supportMethodsArguments=true
+                                returnPageInfo=check
+                                params=count=countSql
+                            </value>
+                        </property>
+                    </bean>
+                </array>
+            </property>
+        </bean> -->
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageHelper">
-                    这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置
                     <property name="properties">
                         <value>
                             dialect=mysql
-                            reasonable=true
-                            supportMethodsArguments=true
-                            returnPageInfo=check
-                            params=count=countSql
+                            reasonable=false
                         </value>
                     </property>
                 </bean>
             </array>
         </property>
-    </bean> -->
-    
-    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
-        <property name="dataSource" ref="dataSource" />  
-        <!-- 自动扫描mapping.xml文件 -->  
-        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>  
-        <property name="plugins">
-			<array>
-				<bean class="com.github.pagehelper.PageHelper">
-					<property name="properties">
-						<value>
-						dialect=mysql
-	              		reasonable=false
-					</value>
-					</property>
-				</bean>
-			</array>
-		</property>
-    </bean>  
-    
-</beans>  
+    </bean>
+
+</beans>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="generatorConfiguration" type="generatorConfigurationType">
+    <xs:annotation>
+      <xs:documentation>~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2014 abel533@gmail.com
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="tableType">
+    <xs:sequence>
+      <xs:element type="generatedKeyType" name="generatedKey"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="tableName" use="optional"/>
+    <xs:attribute type="xs:string" name="domainObjectName" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="pluginType">
+    <xs:sequence>
+      <xs:element type="propertyType" name="property"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="type"/>
+  </xs:complexType>
+  <xs:complexType name="jdbcConnectionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="driverClass"/>
+        <xs:attribute type="xs:string" name="connectionURL"/>
+        <xs:attribute type="xs:string" name="userId"/>
+        <xs:attribute type="xs:string" name="password"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="javaModelGeneratorType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="targetPackage"/>
+        <xs:attribute type="xs:string" name="targetProject"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="propertyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="value" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="generatedKeyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="column" use="optional"/>
+        <xs:attribute type="xs:string" name="sqlStatement" use="optional"/>
+        <xs:attribute type="xs:string" name="identity" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="contextType">
+    <xs:sequence>
+      <xs:element type="propertyType" name="property" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="pluginType" name="plugin"/>
+      <xs:element type="jdbcConnectionType" name="jdbcConnection"/>
+      <xs:element type="javaModelGeneratorType" name="javaModelGenerator"/>
+      <xs:element type="sqlMapGeneratorType" name="sqlMapGenerator"/>
+      <xs:element type="javaClientGeneratorType" name="javaClientGenerator"/>
+      <xs:element type="tableType" name="table" maxOccurs="unbounded" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>&lt;table tableName="user" domainObjectName="User" >
+    	 &lt;generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    	 
+ 	 &lt;/table></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id"/>
+    <xs:attribute type="xs:string" name="targetRuntime"/>
+    <xs:attribute type="xs:string" name="defaultModelType"/>
+  </xs:complexType>
+  <xs:complexType name="generatorConfigurationType">
+    <xs:sequence>
+      <xs:element type="propertiesType" name="properties"/>
+      <xs:element type="contextType" name="context"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="propertiesType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="resource"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="sqlMapGeneratorType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="targetPackage"/>
+        <xs:attribute type="xs:string" name="targetProject"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="javaClientGeneratorType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="targetPackage"/>
+        <xs:attribute type="xs:string" name="targetProject"/>
+        <xs:attribute type="xs:string" name="type"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
