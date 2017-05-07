@@ -10,7 +10,6 @@ http://blog.csdn.net/defonds/article/details/48716161
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;

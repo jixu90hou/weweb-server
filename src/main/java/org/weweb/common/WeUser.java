@@ -1,7 +1,5 @@
 package org.weweb.common;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * Created by shen on 2016/5/28.
  */
@@ -10,6 +8,7 @@ public class WeUser {
     private String username;
     private String account;
     private String mobile;
+    private String email;
     public String getMobile() {
         return mobile;
     }
@@ -40,5 +39,13 @@ public class WeUser {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

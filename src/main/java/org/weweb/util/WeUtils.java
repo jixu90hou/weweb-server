@@ -5,6 +5,8 @@ import org.weweb.common.UserNotLoginException;
 import org.weweb.common.WeUser;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Created by shen on 2016/5/29.
@@ -23,27 +25,23 @@ public class WeUtils {
             throw new UserNotLoginException();
     }
 
-    public static void checkNull(Object obj) {
-        if (obj == null)
-            throw new NullPointerException();
-    }
 
     //取得用户信息
     public static WeUser getWeUser(HttpServletRequest request) {
-        checkNull(request);
+        Objects.requireNonNull(request);
         WeUser weUser = (WeUser) request.getSession().getAttribute("weUser");
         return weUser;
     }
 
     //添加用户信息
     public static void addWeUser(HttpServletRequest request, WeUser weUser) {
-        checkNull(request);
+        Objects.requireNonNull(request);
         request.getSession().setAttribute("weUser", weUser);
     }
 
     //移除用户信息
     public static void removeWeUser(HttpServletRequest request) {
-        checkNull(request);
+        Objects.requireNonNull(request);
         request.getSession().setAttribute("weUser", null);
     }
 
@@ -53,5 +51,8 @@ public class WeUtils {
         if (StringUtils.isNotBlank(str) && !StringUtils.equalsIgnoreCase("null", str) && !StringUtils.equalsIgnoreCase("undefined", str))
             return true;
         return false;
+    }
+    public static String generateToken(String username,String password){
+        return UUID.randomUUID().toString();
     }
 }

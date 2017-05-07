@@ -4,17 +4,24 @@ package org.weweb.util;
  * @author Jack Shen
  * 2015年12月14日
  */
-public class ConstantUtil {
-	public static final String SUCCESS_CODE="200";
-	public static final String SUCCESS_MSG="操作成功";
-	public static final String ERROR_CODE="203";
-	public static final String ERROR_MSG="操作失败";
-	public static final String REQUEST_EMPTY_CODE="500";
-	public static final String REQUEST_EMPTY_MSG="请求数据为空";
-	public static final String insertLog="添加日志";
-	public static final String updateLog="更新日志";
-	public static final String deleteLog="更新日志";
+public interface ConstantUtil {
+	String SUCCESS_CODE="200";
+	String SUCCESS_MSG="操作成功";
+	String ERROR_CODE="203";
+	String ERROR_MSG="操作失败";
 
-	public static final String startPage="1";
-	public static final String endPage="10";
+	String LOGIN_FAIL_CODE="601";
+	String LOGIN_FAIL_MSG="login fail";
+	String AUTH_FAIL_CODE="602";
+	String AUTH_FAIL_MSG="auth fail";
+
+	String REQUEST_EMPTY_CODE="500";
+	String REQUEST_EMPTY_MSG="请求数据为空";
+	String insertLog="添加日志";
+	String updateLog="更新日志";
+	String deleteLog="更新日志";
+	String WEWEB_TOKEN="weweb_token";
+
+	String startPage="1";
+	String endPage="10";
 }

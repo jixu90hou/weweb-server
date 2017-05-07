@@ -54,24 +54,45 @@
     <table tableName="%" >
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>-->
-    <table tableName="t_news" domainObjectName="TNews" >
+   <!-- <table tableName="t_news" domainObjectName="News" >
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>-->
 
-    </table>
-    <table tableName="t_user" domainObjectName="TUser" >
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-
-    </table>
     <!--
      <table tableName="t_log" domainObjectName="Logger" >
     	 <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
 
  	 </table>
 
-    <table tableName="user" domainObjectName="User" >
-    	 <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
 
- 	 </table>
+ 	  <table tableName="t_student" domainObjectName="Student" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+
+    </table>
     -->
+<!--    <table tableName="user" domainObjectName="User" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="news" domainObjectName="News" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="user_token" domainObjectName="UserToken" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+     <table tableName="log" domainObjectName="Log" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="user_token" domainObjectName="UserToken" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+    -->
+    <table tableName="product" domainObjectName="Product" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="product_stock" domainObjectName="ProductStock" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
   </context>
 </generatorConfiguration>

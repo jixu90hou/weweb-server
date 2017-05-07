@@ -1,0 +1,43 @@
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       ">
+    <dubbo:application name="hello-world-app" />
+
+    &lt;!&ndash;zookeeper注册中心 &ndash;&gt;
+    <dubbo:registry address="zookeeper://192.168.85.101:2181" />
+
+    &lt;!&ndash;使用multicast广播注册中心暴露服务地址 &ndash;&gt;
+    &lt;!&ndash; <dubbo:registry address="multicast://10.10.8.101:20880" /> &ndash;&gt;
+    <dubbo:protocol name="dubbo" port="20880" />
+
+
+
+
+
+
+    &lt;!&ndash; 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 &ndash;&gt;
+    <dubbo:application name="consumer-of-helloworld-app"  />
+
+    &lt;!&ndash;zookeeper注册中心 &ndash;&gt;
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+
+    <dubbo:consumer timeout="5000"/>
+
+    &lt;!&ndash; 生成远程服务代理，可以和本地bean一样使用demoService &ndash;&gt;
+    <dubbo:reference id="demoService" interface="cn.feezu.carsearch.service.DemoService" />
+
+
+    <dubbo:service
+            interface="cn.feezu.carsearch.service.DemoService" ref="demoService" version="1.0"  />
+
+    &lt;!&ndash; 和本地bean一样实现服务 &ndash;&gt;
+    <bean id="demoService"
+          class="cn.feezu.carsearch.serviceImpl.DemoServiceImpl" />
+</beans>  -->
